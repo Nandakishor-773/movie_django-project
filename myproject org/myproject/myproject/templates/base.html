@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Project</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        nav {
+            background-color: #1e1e2f;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: orange;
+        }
+
+        nav span {
+            color: #00e5ff;
+        }
+
+        main {
+            padding: 20px;
+            margin: 20px;
+            background-color: white;
+            border-radius: 6px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <nav>
+        <a href="{% url 'movie_list' %}">Home</a>
+
+        {% if user.is_authenticated %}
+            <span>{{ user.username }}</span> |
+            <a href="{% url 'add_movie' %}">Add Movie</a> |
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a> |
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>
